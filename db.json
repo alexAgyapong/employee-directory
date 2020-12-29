@@ -1,0 +1,225 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "name": "James Adams",
+      "email": "brad.gibson@test.com",
+      "phone": "011-962-7516",
+      "age": "34",
+      "gender": "Male",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/men/75.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/75.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/75.jpg"
+      },
+      "jobTitle": "HR Manager",
+      "departmentId": 1
+    },
+    {
+      "id": 3,
+      "name": "Joana Tester",
+      "email": "dina@test.com",
+      "phone": "07445633268",
+      "age": 37,
+      "gender": "Female",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/women/3.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/3.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/3.jpg"
+      },
+      "jobTitle": "Accounts Manager",
+      "departmentId": 4
+    },
+    {
+      "id": 5,
+      "name": "Kirsty Bush",
+      "email": "k.bush@test.com",
+      "phone": "07598633256",
+      "age": "53",
+      "gender": "Female",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/women/5.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/5.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/5.jpg"
+      },
+      "jobTitle": "Sales Manager",
+      "departmentId": 6
+    },
+    {
+      "id": 6,
+      "name": "Jim Black",
+      "email": "jblack@test.com",
+      "phone": "07909633206",
+      "age": "39",
+      "gender": "Male",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/men/6.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/6.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/6.jpg"
+      },
+      "jobTitle": "Property Assistant",
+      "departmentId": 3
+    },
+    {
+      "id": 7,
+      "name": "Manta Bryona",
+      "email": "mb@test.com",
+      "phone": "079945633256",
+      "age": "31",
+      "gender": "male",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/men/7.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/7.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/7.jpg"
+      },
+      "jobTitle": "Accounts Assistant",
+      "departmentId": 4
+    },
+    {
+      "id": 8,
+      "name": "Jo Ama",
+      "email": "h.ama@test.com",
+      "phone": "07944633256",
+      "age": 25,
+      "gender": "Female",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/women/8.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/8.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/8.jpg"
+      },
+      "jobTitle": "Marketing Director",
+      "departmentId": 5
+    },
+    {
+      "name": "Alex Mathews",
+      "email": "sr@test.co.uk",
+      "phone": "02076022352",
+      "age": 45,
+      "gender": "Male",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/men/49.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/49.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/49.jpg"
+      },
+      "jobTitle": "Chief Sales Manager",
+      "departmentId": "6",
+      "id": 14
+    },
+    {
+      "name": "Dani Paragh",
+      "email": "dp@test.com",
+      "phone": "02076023352",
+      "age": 43,
+      "gender": "Female",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/women/46.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/46.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/46.jpg"
+      },
+      "jobTitle": "Manager",
+      "departmentId": "4",
+      "id": 15
+    },
+    {
+      "name": "Ana Twegu",
+      "email": "at@test.com",
+      "phone": "02038186210",
+      "age": 23,
+      "gender": "Female",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/women/34.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/34.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/34.jpg"
+      },
+      "jobTitle": "Consultant",
+      "departmentId": "1",
+      "id": 16
+    },
+    {
+      "name": "Vino Eli",
+      "email": "vi@test.com",
+      "phone": "02038186210",
+      "age": 32,
+      "gender": "Female",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/women/40.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/40.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/40.jpg"
+      },
+      "jobTitle": "Support",
+      "departmentId": "4",
+      "id": 17
+    },
+    {
+      "name": "Clarke June",
+      "email": "cj@test.com",
+      "phone": "02038186210",
+      "age": 36,
+      "gender": "Male",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/men/91.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/91.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/91.jpg"
+      },
+      "jobTitle": "IT Manager",
+      "departmentId": "2",
+      "id": 18
+    },
+    {
+      "name": "Duncan Kennedy",
+      "email": "dk@test.com",
+      "phone": "07799600983",
+      "age": 46,
+      "gender": "Male",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/men/72.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/72.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/72.jpg"
+      },
+      "jobTitle": "Accountant",
+      "departmentId": "4",
+      "id": 19
+    },
+    {
+      "name": "Firestore Test",
+      "email": "ft@test.com",
+      "phone": "02076022352",
+      "age": 33,
+      "gender": "Female",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/women/69.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/69.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/69.jpg"
+      },
+      "jobTitle": "Assistant",
+      "departmentId": "1",
+      "id": 20
+    }
+  ],
+  "departments": [
+    {
+      "id": 1,
+      "name": "HR"
+    },
+    {
+      "id": 2,
+      "name": "IT"
+    },
+    {
+      "id": 3,
+      "name": "Property Management"
+    },
+    {
+      "id": 4,
+      "name": "Accounts"
+    },
+    {
+      "id": 5,
+      "name": "Marketing"
+    },
+    {
+      "id": 6,
+      "name": "Sales"
+    }
+  ]
+}
