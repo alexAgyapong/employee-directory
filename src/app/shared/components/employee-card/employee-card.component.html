@@ -1,1 +1,13 @@
-<p>employee-card works!</p>
+<div *ngIf="employee" class="card mb-3">
+  <article class="text-center pt-3">
+    <img [src]="employee?.image?.medium" alt="Employee photo" class="img-fluid rounded-circle" >
+    <p class="mb-0">{{employee?.name}}</p>
+    <p>{{employee?.jobTitle}}</p>
+  </article>
+  <hr >
+  <div class="d-flex flex-column justify-content-start px-3 mb-3">
+    <p class="mb-0">{{employee?.department}}</p>
+    <a class="py-2" href="mailto:employee?.email">{{employee?.email}}</a>
+    <a href="tel:+employee?.phone">{{employee?.phone}}</a>
+  </div>
+</div>
