@@ -1,0 +1,43 @@
+<div *ngIf="employee$|async as employee" class="card-content">
+  <div class="card">
+    <div class="card-header">
+      <h5> Employee Detail</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div  class="col-sm-3 mb-3"><img [src]="employee?.image?.large" alt="" class="card-img-top"></div>
+
+        <div class="col-sm-auto">
+          <div class="ms-sm-3">
+            <p><span class="fw-bold">Name:</span> {{employee?.name}}</p>
+            <p><span class="fw-bold">Email:</span> {{employee?.email}}</p>
+            <p><span class="fw-bold">Phone:</span> {{employee?.phone}}</p>
+            <p><span class="fw-bold">Age:</span> {{employee?.age}}</p>
+            <p><span class="fw-bold">Gender:</span> {{employee?.gender}}</p>
+            <p><span class="fw-bold">Job Title: </span>{{employee?.jobTitle}}</p>
+            <p><span class="fw-bold">Department: </span>{{employee?.department}}</p>
+          </div>
+          <div class="ms-sm-3 pt-2">
+            <button class="btn btn-outline-secondary" (click)="goBack()">Back</button>
+            <!-- <button class="btn btn-outline-warning ml-3" (click)="delete()">Delete</button> -->
+            <button type="button"  class="btn btn-outline-warning ms-3" data-toggle="modal" data-target="#warningModal">
+              Delete
+            </button>
+
+            <a [routerLink]="['/edit', employee.id]" class="btn btn-primary ms-3">Edit</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div *ngIf="employee$|async as employee" class="card" style="width: 18rem;">
+  <img [src]="employee?.image?.large" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div> -->

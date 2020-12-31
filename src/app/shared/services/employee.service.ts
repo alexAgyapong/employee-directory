@@ -17,6 +17,12 @@ export class EmployeeService {
     const url = `${this.baseURL}/employees`;
     return this.http.get<any>(url);
   }
+
+  getEmployeeDetail(id: number): Observable<Employee> {
+    const url = `${this.baseURL}/employees/${id}`;
+    return this.http.get<any>(url);
+  }
+
   getDepartments(): Observable<Department[]> {
     const url = `${this.baseURL}/departments`;
     return this.http.get<any>(url)

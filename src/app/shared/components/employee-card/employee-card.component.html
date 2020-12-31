@@ -1,19 +1,21 @@
 <div *ngIf="employee" class="card mb-3">
-  <article class="text-center pt-3">
-    <img [src]="employee?.image?.medium" alt="Employee photo" class="img-fluid rounded-circle">
-    <p class="mb-0">{{employee?.name}}</p>
-    <p>{{employee?.jobTitle}}</p>
-  </article>
-  <hr>
-  <div class="d-flex flex-column px-3 mb-3">
-    <p class="icon-container">
-      <ion-icon *ngIf="employee?.department" name="people-outline"></ion-icon><span>{{employee?.department}}</span>
-    </p>
-    <a class="icon-container" href="mailto:employee?.email">
-      <ion-icon name="mail-outline"></ion-icon><span>{{employee?.email}}</span>
-    </a>
-    <a class="icon-container" href="tel:+employee?.phone">
-      <ion-icon name="call-outline"></ion-icon><span>{{employee?.phone}}</span>
-    </a>
-  </div>
+  <a class="personal-info" [routerLink]="['/detail', employee?.id]" routerLinkActive="router-link-active">
+    <article class="text-center pt-3">
+      <img [src]="employee?.image?.medium" alt="Employee photo" class="img-fluid rounded-circle">
+      <p class="mb-0">{{employee?.name}}</p>
+      <p>{{employee?.jobTitle}}</p>
+    </article>
+    <hr>
+    <div class="d-flex flex-column px-3 mb-3">
+      <p class="icon-container">
+        <ion-icon *ngIf="employee?.department" name="people-outline"></ion-icon><span>{{employee?.department}}</span>
+      </p>
+      <a class="icon-container" href="mailto:employee?.email">
+        <ion-icon name="mail-outline"></ion-icon><span>{{employee?.email}}</span>
+      </a>
+      <a class="icon-container" href="tel:+employee?.phone">
+        <ion-icon name="call-outline"></ion-icon><span>{{employee?.phone}}</span>
+      </a>
+    </div>
+  </a>
 </div>
