@@ -106,36 +106,6 @@
       "id": 14
     },
     {
-      "name": "Dani Paragh",
-      "email": "dp@test.com",
-      "phone": "02076023352",
-      "age": 43,
-      "gender": "Female",
-      "image": {
-        "large": "https://randomuser.me/api/portraits/women/46.jpg",
-        "medium": "https://randomuser.me/api/portraits/med/women/46.jpg",
-        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/46.jpg"
-      },
-      "jobTitle": "Manager",
-      "departmentId": "4",
-      "id": 15
-    },
-    {
-      "name": "Ana Twegu",
-      "email": "at@test.com",
-      "phone": "02038186210",
-      "age": 23,
-      "gender": "Female",
-      "image": {
-        "large": "https://randomuser.me/api/portraits/women/34.jpg",
-        "medium": "https://randomuser.me/api/portraits/med/women/34.jpg",
-        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/34.jpg"
-      },
-      "jobTitle": "Consultant",
-      "departmentId": "1",
-      "id": 16
-    },
-    {
       "name": "Vino Eli",
       "email": "vi@test.com",
       "phone": "02038186210",
@@ -164,36 +134,6 @@
       "jobTitle": "IT Manager",
       "departmentId": "2",
       "id": 18
-    },
-    {
-      "name": "Duncan Kennedy",
-      "email": "dk@test.com",
-      "phone": "07799600983",
-      "age": 46,
-      "gender": "Male",
-      "image": {
-        "large": "https://randomuser.me/api/portraits/men/72.jpg",
-        "medium": "https://randomuser.me/api/portraits/med/men/72.jpg",
-        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/72.jpg"
-      },
-      "jobTitle": "Accountant",
-      "departmentId": "4",
-      "id": 19
-    },
-    {
-      "name": "Firestore Test",
-      "email": "ft@test.com",
-      "phone": "02076022352",
-      "age": 33,
-      "gender": "Female",
-      "image": {
-        "large": "https://randomuser.me/api/portraits/women/69.jpg",
-        "medium": "https://randomuser.me/api/portraits/med/women/69.jpg",
-        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/69.jpg"
-      },
-      "jobTitle": "Assistant",
-      "departmentId": "1",
-      "id": 20
     }
   ],
   "departments": [

@@ -19,11 +19,9 @@
           </div>
           <div class="ms-sm-3 pt-2">
             <button class="btn btn-outline-secondary" (click)="goBack()">Back</button>
-            <!-- <button class="btn btn-outline-warning ml-3" (click)="delete()">Delete</button> -->
-            <button type="button"  class="btn btn-outline-warning ms-3" data-toggle="modal" data-target="#warningModal">
+            <button type="button"  class="btn btn-outline-warning ms-3" data-bs-toggle="modal" data-bs-target="#warningModal">
               Delete
             </button>
-
             <a [routerLink]="['/edit', employee.id]" class="btn btn-primary ms-3">Edit</a>
           </div>
         </div>
@@ -32,12 +30,21 @@
   </div>
 </div>
 
-
-<!-- <div *ngIf="employee$|async as employee" class="card" style="width: 18rem;">
-  <img [src]="employee?.image?.large" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+<!-- Modal -->
+<div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="warningModalLabel">Delete Employee</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete employee?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteEmployee()">Yes</button>
+      </div>
+    </div>
   </div>
-</div> -->
+</div>

@@ -49,6 +49,12 @@ export class EmployeeDetailComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
+  deleteEmployee(): void {
+    this.employeeService.deleteEmployeeDetail(this.employeeId).subscribe(res => {
+      if (res) { this.goBack(); }
+    });
+
+  }
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }

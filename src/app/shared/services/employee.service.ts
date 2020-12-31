@@ -23,6 +23,11 @@ export class EmployeeService {
     return this.http.get<any>(url);
   }
 
+  deleteEmployeeDetail(id: number): Observable<Employee> {
+    const url = `${this.baseURL}/employees/${id}`;
+    return this.http.delete<any>(url);
+  }
+
   getDepartments(): Observable<Department[]> {
     const url = `${this.baseURL}/departments`;
     return this.http.get<any>(url)
@@ -30,4 +35,5 @@ export class EmployeeService {
         tap(data => localStorage.setItem('departments', JSON.stringify(data)))
       );
   }
+
 }
