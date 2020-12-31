@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Department } from '../shared/models/department';
 import { EmployeeService } from '../shared/services/employee.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 
 @Component({
@@ -19,6 +19,7 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
   }
 
   constructor(private fb: FormBuilder, private employeeService: EmployeeService, private location: Location) { }
+
 
   ngOnInit(): void {
     this.getDepartments();
