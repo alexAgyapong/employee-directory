@@ -25,30 +25,34 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   getEmployees(): void {
     this.employees$ = this.employeeService.getEmployees()
       .pipe(tap((employees) => {
-        this.setEmployeeDepartment(employees);
+        this.getEmployeeDepartments(employees);
       }));
   }
 
-  getEmployeeDepartments(): void {
-    this.subscription = this.employeeService.getDepartments().subscribe((res) => {
-      this.departments = res;
+  private getEmployeeDepartments(employees: Employee[]): void {
+    const response = localStorage.getItem('departments');
+    const departments = JSON.parse(response) as Department[];
+    if (departments) {
+      this.setEmployeeDepartment(employees, departments);
+    } else {
+      this.subscription = this.employeeService.getDepartments().subscribe(res => {
+        this.setEmployeeDepartment(employees, res);
+        console.log({ res }, 'depts res');
+      }
+      );
+    }
+  }
+
+  private setEmployeeDepartment(employees: Employee[], departments: Department[]): void {
+    employees.forEach(employee => {
+      departments.forEach(department => {
+        if (employee.departmentId === department.id) {
+          employee.department = department.name;
+        }
+      });
     });
   }
 
-  private setEmployeeDepartment(employees: Employee[]): void {
-    this.employeeService.getDepartments().subscribe(departments => {
-      this.departments = departments;
-      employees.forEach(employee => {
-        departments.forEach(department => {
-          if (employee.departmentId === department.id) {
-            employee.department = department.name;
-          }
-        });
-      });
-      console.log({ res: departments }, 'depts res');
-    }
-    );
-  }
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }
