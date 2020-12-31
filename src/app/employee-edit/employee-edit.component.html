@@ -1,7 +1,16 @@
 <div class="card-content">
+  <!-- <div *ngIf="message" class="toast d-flex align-items-center text-white bg-success border-0" role="alert"
+    aria-live="assertive" aria-atomic="true">
+    <div class="toast-body">
+      {{message}}
+    </div>
+  </div> -->
+  <div *ngIf="message" class="alert alert-success" role="alert">
+    {{message}}
+  </div>
   <div class="card">
     <div class="card-header mb-3">
-      <h5>New Employee</h5>
+      <h5>Employee Detail</h5>
     </div>
     <div class="card-body">
       <ng-container *ngIf="employee$|async"></ng-container>

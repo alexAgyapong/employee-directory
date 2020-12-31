@@ -34,8 +34,8 @@
       "id": 5,
       "name": "Kirsty Bush",
       "email": "k.bush@test.com",
-      "phone": "07598633256",
-      "age": "53",
+      "phone": "07598633258",
+      "age": 33,
       "gender": "Female",
       "image": {
         "large": "https://randomuser.me/api/portraits/women/5.jpg",

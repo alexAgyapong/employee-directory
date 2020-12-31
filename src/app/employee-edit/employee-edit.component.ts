@@ -4,7 +4,7 @@ import { Department } from '../shared/models/department';
 import { EmployeeService } from '../shared/services/employee.service';
 import { Observable, Subscription } from 'rxjs';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { Employee } from '../shared/models/employee';
 
@@ -20,6 +20,7 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
   employeeId: number;
   existingEmployee: Employee;
   employee$: Observable<Employee>;
+  message = '';
 
   get emailControl(): FormControl {
     return this.employeeForm.get('email') as FormControl;
@@ -28,6 +29,7 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder,
     private employeeService: EmployeeService,
     private location: Location,
+    private router: Router,
     private route: ActivatedRoute) { }
 
 
@@ -81,9 +83,16 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
     }
 
     if (this.employeeForm.dirty) {
-      this.employeeService.updateEmployeeDetail(employee).subscribe(res => console.log('emp res', res)
-      );
+      this.employeeService.updateEmployeeDetail(employee).subscribe(res => { if (res) { this.onSaveComplete(res); } });
     }
+  }
+
+  onSaveComplete(employee: Employee): void {
+    this.message = `Employee successfully saved!`;
+    setTimeout(() => {
+      this.router.navigate(['/detail', employee.id ], { queryParams: { isUpdated: true } });
+      this.employeeForm.reset();
+    }, 2000);
   }
 
   cancel(): void {
