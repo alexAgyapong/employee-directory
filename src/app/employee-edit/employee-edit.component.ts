@@ -4,6 +4,9 @@ import { Department } from '../shared/models/department';
 import { EmployeeService } from '../shared/services/employee.service';
 import { Observable, Subscription } from 'rxjs';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { tap } from 'rxjs/operators';
+import { Employee } from '../shared/models/employee';
 
 @Component({
   selector: 'app-employee-edit',
@@ -11,21 +14,38 @@ import { Location } from '@angular/common';
   styleUrls: ['./employee-edit.component.scss']
 })
 export class EmployeeEditComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
   employeeForm: FormGroup;
   departments: Department[];
-  subscription: Subscription;
+  employeeId: number;
+  existingEmployee: Employee;
+  employee$: Observable<Employee>;
+
   get emailControl(): FormControl {
     return this.employeeForm.get('email') as FormControl;
   }
 
-  constructor(private fb: FormBuilder, private employeeService: EmployeeService, private location: Location) { }
+  constructor(private fb: FormBuilder,
+    private employeeService: EmployeeService,
+    private location: Location,
+    private route: ActivatedRoute) { }
 
 
   ngOnInit(): void {
     this.getDepartments();
     this.setupForm();
+    this.getEmployeeDetail();
   }
-
+  getEmployeeDetail(): void {
+    this.employeeId = +this.route.snapshot.params.id;
+    if (this.employeeId) {
+      this.employee$ = this.employeeService.getEmployeeDetail(this.employeeId).pipe(tap(res => {
+        console.log({ res });
+        this.existingEmployee = res;
+        this.populateForm(res);
+      }));
+    }
+  }
 
   private setupForm(): void {
     this.employeeForm = this.fb.group({
@@ -36,19 +56,34 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
       gender: ['none'],
       image: [''],
       jobTitle: ['', Validators.required],
-      departmentId: ['0', [Validators.min(1)]]
+      departmentId: [0, [Validators.min(1)]]
     });
+  }
+
+  populateForm(res: Employee): void {
+    this.employeeForm.patchValue(res);
   }
 
   getDepartments(): void {
     const data = localStorage.getItem('departments');
     this.departments = JSON.parse(data) as Department[];
-    if (!this.departments.length) {
+    if (!this.departments) {
       this.subscription = this.employeeService.getDepartments().subscribe(res => this.departments = res);
     }
   }
-  saveEmployee() {
 
+  saveEmployee(): void {
+    const employee = { ...this.existingEmployee, ...this.employeeForm?.value } as Employee;
+    employee.departmentId = +employee.departmentId;
+
+    if (this.employeeForm.invalid) {
+      return;
+    }
+
+    if (this.employeeForm.dirty) {
+      this.employeeService.updateEmployeeDetail(employee).subscribe(res => console.log('emp res', res)
+      );
+    }
   }
 
   cancel(): void {

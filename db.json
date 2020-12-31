@@ -91,21 +91,6 @@
       "departmentId": 5
     },
     {
-      "name": "Alex Mathews",
-      "email": "sr@test.co.uk",
-      "phone": "02076022352",
-      "age": 45,
-      "gender": "Male",
-      "image": {
-        "large": "https://randomuser.me/api/portraits/men/49.jpg",
-        "medium": "https://randomuser.me/api/portraits/med/men/49.jpg",
-        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/49.jpg"
-      },
-      "jobTitle": "Chief Sales Manager",
-      "departmentId": "6",
-      "id": 14
-    },
-    {
       "name": "Vino Eli",
       "email": "vi@test.com",
       "phone": "02038186210",
@@ -117,7 +102,7 @@
         "thumbnail": "https://randomuser.me/api/portraits/thumb/women/40.jpg"
       },
       "jobTitle": "Support",
-      "departmentId": "4",
+      "departmentId": 3,
       "id": 17
     },
     {
@@ -131,8 +116,8 @@
         "medium": "https://randomuser.me/api/portraits/med/men/91.jpg",
         "thumbnail": "https://randomuser.me/api/portraits/thumb/men/91.jpg"
       },
-      "jobTitle": "IT Manager",
-      "departmentId": "2",
+      "jobTitle": "Accounts Manager",
+      "departmentId": 4,
       "id": 18
     }
   ],
