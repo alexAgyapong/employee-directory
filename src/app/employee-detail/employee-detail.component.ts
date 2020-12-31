@@ -5,6 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Employee } from '../shared/models/employee';
 import { Department } from '../shared/models/department';
 import { tap } from 'rxjs/operators';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-employee-detail',
@@ -16,7 +17,7 @@ export class EmployeeDetailComponent implements OnInit, OnDestroy {
   employee$: Observable<Employee>;
   subscription: Subscription;
 
-  constructor(private employeeService: EmployeeService, private route: ActivatedRoute) { }
+  constructor(private employeeService: EmployeeService, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     this.employeeId = +this.route.snapshot.params.id;
@@ -44,8 +45,8 @@ export class EmployeeDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  goBack() {
-
+  goBack(): void {
+    this.location.back();
   }
 
   ngOnDestroy(): void {
