@@ -23,7 +23,12 @@ export class EmployeeService {
     return this.http.get<any>(url);
   }
 
-  updateEmployeeDetail(employee: Employee): Observable<Employee> {
+  addEmployee(employee: Employee): Observable<Employee> {
+    const url = `${this.baseURL}/employees`;
+    return this.http.post<any>(url, employee);
+  }
+
+updateEmployeeDetail(employee: Employee): Observable<Employee> {
     const url = `${this.baseURL}/employees/${employee.id}`;
     return this.http.put<any>(url, employee);
   }

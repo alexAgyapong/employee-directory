@@ -39,14 +39,19 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
     this.getEmployeeDetail();
   }
   getEmployeeDetail(): void {
-    this.employeeId = +this.route.snapshot.params.id;
-    if (this.employeeId) {
-      this.employee$ = this.employeeService.getEmployeeDetail(this.employeeId).pipe(tap(res => {
-        console.log({ res });
-        this.existingEmployee = res;
-        this.populateForm(res);
-      }));
-    }
+    this.route.params.subscribe(params => {
+      this.employeeId = +params.id;
+      if (this.employeeId) {
+        this.employee$ = this.employeeService.getEmployeeDetail(this.employeeId).pipe(tap(res => {
+          console.log({ res });
+          this.existingEmployee = res;
+          this.populateForm(res);
+        }));
+      } else {
+        this.employeeForm.reset();
+        this.setupForm();
+      }
+    });
   }
 
   private setupForm(): void {
@@ -83,14 +88,18 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
     }
 
     if (this.employeeForm.dirty) {
-      this.employeeService.updateEmployeeDetail(employee).subscribe(res => { if (res) { this.onSaveComplete(res); } });
+      if (this.employeeId) {
+        this.employeeService.updateEmployeeDetail(employee).subscribe(res => { if (res) { this.onSaveComplete(res); } });
+      } else {
+        this.employeeService.addEmployee(employee).subscribe(res => { if (res) { this.onSaveComplete(res); } });
+      }
     }
   }
 
   onSaveComplete(employee: Employee): void {
     this.message = `Employee successfully saved!`;
     setTimeout(() => {
-      this.router.navigate(['/detail', employee.id ], { queryParams: { isUpdated: true } });
+      this.router.navigate(['/detail', employee.id], { queryParams: { isUpdated: true } });
       this.employeeForm.reset();
     }, 2000);
   }

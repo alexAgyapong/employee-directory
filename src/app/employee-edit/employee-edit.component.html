@@ -9,8 +9,21 @@
     {{message}}
   </div>
   <div class="card">
-    <div class="card-header mb-3">
-      <h5>Employee Detail</h5>
+    <div class="card-header mb-3 d-flex">
+      <ng-container *ngIf="employeeId else newEmployee">
+        <h5>Employee Detail</h5>
+      </ng-container>
+      <ng-template #newEmployee>
+        <h5>New Employee</h5>
+      </ng-template>
+      <!-- <div class="row ms-auto">
+        <a role="button" class="btn btn-link" [routerLink]="['/edit', 0]">New employee</a>
+      </div> -->
+      <div *ngIf="employeeId" class="col-auto ms-auto ">
+        <a role="button" class="btn btn-link d-flex" [routerLink]="['/edit', 0]">
+          <ion-icon class="align-self-center" name="add-outline"></ion-icon> New employee
+        </a>
+      </div>
     </div>
     <div class="card-body">
       <ng-container *ngIf="employee$|async"></ng-container>
