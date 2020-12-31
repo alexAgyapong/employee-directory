@@ -3,10 +3,10 @@
     <div class="card-header">
       <h5> Employee Detail</h5>
     </div>
+    <div  class="mb-3 d-block d-sm-none"><img [src]="employee?.image?.large" alt="" class="card-img-top"></div>
     <div class="card-body">
       <div class="row">
-        <div  class="col-sm-3 mb-3"><img [src]="employee?.image?.large" alt="" class="card-img-top"></div>
-
+        <div  class="col-sm-3 d-none d-sm-block"><img [src]="employee?.image?.large" alt="" class="card-img-top"></div>
         <div class="col-sm-auto">
           <div class="ms-sm-3">
             <p><span class="fw-bold">Name:</span> {{employee?.name}}</p>
