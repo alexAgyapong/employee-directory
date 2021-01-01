@@ -2,8 +2,9 @@
   <form [formGroup]="searchForm">
     <div class="row">
       <div class="col-sm input-group mb-3">
-        <input type="search" class="form-control" aria-label="search" aria-describedby="search" placeholder="Search by name...">
-        <button class="input-group-text btn btn-primary" id="search" >
+        <input type="search" class="form-control" id="search" aria-label="search" aria-describedby="search"
+          placeholder="Search by name..." formControlName="searchTerm">
+        <button type="button" class="input-group-text btn btn-primary" (click)="searchEmployees()">
           <ion-icon name="search-outline"></ion-icon>
         </button>
       </div>

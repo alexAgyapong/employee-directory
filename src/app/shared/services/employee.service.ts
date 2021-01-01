@@ -18,6 +18,16 @@ export class EmployeeService {
     return this.http.get<any>(url);
   }
 
+  searchEmployees(searchTerm: string): Observable<Employee[]> {
+    const url = `${this.baseURL}/employees?q=${searchTerm}`;
+    return this.http.get<any>(url);
+  }
+
+  filterEmployeesByDepartment(id: number): Observable<Employee[]> {
+    const url = `${this.baseURL}/employees?departmentId=${id}`;
+    return this.http.get<any>(url);
+  }
+
   getEmployeeDetail(id: number): Observable<Employee> {
     const url = `${this.baseURL}/employees/${id}`;
     return this.http.get<any>(url);
@@ -28,7 +38,7 @@ export class EmployeeService {
     return this.http.post<any>(url, employee);
   }
 
-updateEmployeeDetail(employee: Employee): Observable<Employee> {
+  updateEmployeeDetail(employee: Employee): Observable<Employee> {
     const url = `${this.baseURL}/employees/${employee.id}`;
     return this.http.put<any>(url, employee);
   }
@@ -45,5 +55,7 @@ updateEmployeeDetail(employee: Employee): Observable<Employee> {
         tap(data => localStorage.setItem('departments', JSON.stringify(data)))
       );
   }
+
+
 
 }

@@ -23,16 +23,16 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getEmployees();
     this.searchForm = this.fb.group({ searchTerm: [''], departmentId: ['0'] });
+
     this.searchForm
       .get('searchTerm')
       .valueChanges.pipe(debounceTime(500))
-      .subscribe((input: string) => {
-        // if (input) {
-        //   this.searchEmployees(input);
-        // } else {
-        //   this.filterByDepartment();
-        // }
-      })
+      .subscribe((input: string) => input?.length ? this.searchEmployees(input) : this.getEmployees());
+
+    this.searchForm
+      .get('departmentId')
+      .valueChanges
+      .subscribe((input: number) => input > 0 ? this.filterEmployees(input) : this.getEmployees());
   }
 
   getEmployees(): void {
@@ -42,13 +42,31 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       }));
   }
 
+  searchEmployees(searchTerm?: string): void {
+    console.log('here.....');
+
+    searchTerm = this.searchForm.get('searchTerm')?.value;
+    if (searchTerm) {
+      this.employees$ = this.employeeService.searchEmployees(searchTerm).pipe(tap(data => {
+        this.getEmployeeDepartments(data);
+      }));
+    }
+  }
+
+  private filterEmployees(departmentId: number): void {
+    this.employees$ = this.employeeService.filterEmployeesByDepartment(departmentId).pipe(tap(data => {
+      this.getEmployeeDepartments(data);
+    }));
+  }
+
   private getEmployeeDepartments(employees: Employee[]): void {
     const response = localStorage.getItem('departments');
-    const departments = JSON.parse(response) as Department[];
-    if (departments) {
-      this.setEmployeeDepartment(employees, departments);
+    this.departments = JSON.parse(response) as Department[];
+    if (!this.departments) {
+      this.setEmployeeDepartment(employees, this.departments);
     } else {
       this.subscription = this.employeeService.getDepartments().subscribe(res => {
+        this.departments = res;
         this.setEmployeeDepartment(employees, res);
         console.log({ res }, 'depts res');
       }
