@@ -83,6 +83,7 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
     const employee = { ...this.existingEmployee, ...this.employeeForm?.value } as Employee;
     employee.departmentId = +employee.departmentId;
 
+
     if (this.employeeForm.invalid) {
       return;
     }
@@ -91,9 +92,26 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
       if (this.employeeId) {
         this.employeeService.updateEmployeeDetail(employee).subscribe(res => { if (res) { this.onSaveComplete(res); } });
       } else {
+        employee.id = this.employeeId;
+        this.setEmployeeImages(employee);
         this.employeeService.addEmployee(employee).subscribe(res => { if (res) { this.onSaveComplete(res); } });
       }
     }
+  }
+
+  setEmployeeImages(employee: Employee): void {
+    let imgType = '';
+    employee.gender === 'Male' ? imgType = 'men' : imgType = 'women';
+    const id = this.generateRandomNumbers(10, 100);
+    const large = `https://randomuser.me/api/portraits/${imgType}/${id}.jpg`;
+    const medium = `https://randomuser.me/api/portraits/med/${imgType}/${id}.jpg`;
+    const thumbnail = `https://randomuser.me/api/portraits/thumb/${imgType}/${id}.jpg`;
+
+    employee.image = {large, medium, thumbnail };
+  }
+
+  generateRandomNumbers(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   onSaveComplete(employee: Employee): void {

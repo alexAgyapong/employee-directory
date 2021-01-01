@@ -119,6 +119,47 @@
       "jobTitle": "Accounts Manager",
       "departmentId": 4,
       "id": 18
+    },
+    {
+      "name": "Rina Bronze",
+      "email": "rina@test.com",
+      "phone": "07498766345",
+      "age": 32,
+      "gender": "Female",
+      "image": "",
+      "jobTitle": "Assistant",
+      "departmentId": 1,
+      "id": 19
+    },
+    {
+      "name": "Rina Bronze",
+      "email": "rina@test.com",
+      "phone": "07498766345",
+      "age": 34,
+      "gender": "Female",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/women/39.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/39.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/39.jpg"
+      },
+      "jobTitle": "Tester",
+      "departmentId": 2,
+      "id": 20
+    },
+    {
+      "name": "George Hanks",
+      "email": "hg@test.com",
+      "phone": "07498766345",
+      "age": 35,
+      "gender": "Male",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/men/39.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/39.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/39.jpg"
+      },
+      "jobTitle": "Support",
+      "departmentId": 1,
+      "id": 21
     }
   ],
   "departments": [
