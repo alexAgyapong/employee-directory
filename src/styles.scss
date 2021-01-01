@@ -1,18 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap");
 
-hr{
-  background-color: hsl(0,0,80%);
+body {
+  font-family: "Montserrat", sans-serif;
 }
 
-.card-content{
+hr {
+  background-color: hsl(0, 0, 80%);
+}
+
+.card-content {
   width: 90vw;
   margin: 1rem auto;
 }
 
-@media screen and (min-width:768px){
-  .card-content{
+@media screen and (min-width: 768px) {
+  .card-content {
     width: 60vw;
     margin: 1.5rem auto;
   }
-
 }
