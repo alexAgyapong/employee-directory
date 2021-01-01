@@ -160,6 +160,21 @@
       "jobTitle": "Support",
       "departmentId": 1,
       "id": 21
+    },
+    {
+      "id": 22,
+      "name": "Hatton Bryan",
+      "email": "hb@test.com",
+      "phone": "07549877653",
+      "age": 27,
+      "gender": "Male",
+      "image": {
+        "large": "https://randomuser.me/api/portraits/men/46.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/46.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/46.jpg"
+      },
+      "jobTitle": "Support",
+      "departmentId": 2
     }
   ],
   "departments": [

@@ -26,11 +26,23 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
     return this.employeeForm.get('email') as FormControl;
   }
 
+  get nameControl(): FormControl {
+    return this.employeeForm.get('name') as FormControl;
+  }
+
+  get jobTitleControl(): FormControl {
+    return this.employeeForm.get('jobTitle') as FormControl;
+  }
+
+  get departmentIdControl(): FormControl {
+    return this.employeeForm.get('departmentId') as FormControl;
+  }
+
   constructor(private fb: FormBuilder,
-    private employeeService: EmployeeService,
-    private location: Location,
-    private router: Router,
-    private route: ActivatedRoute) { }
+              private employeeService: EmployeeService,
+              private location: Location,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
 
   ngOnInit(): void {
@@ -82,6 +94,7 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
   saveEmployee(): void {
     const employee = { ...this.existingEmployee, ...this.employeeForm?.value } as Employee;
     employee.departmentId = +employee.departmentId;
+    console.log(this.employeeForm);
 
 
     if (this.employeeForm.invalid) {
@@ -107,7 +120,7 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
     const medium = `https://randomuser.me/api/portraits/med/${imgType}/${id}.jpg`;
     const thumbnail = `https://randomuser.me/api/portraits/thumb/${imgType}/${id}.jpg`;
 
-    employee.image = {large, medium, thumbnail };
+    employee.image = { large, medium, thumbnail };
   }
 
   generateRandomNumbers(min: number, max: number): number {
@@ -124,6 +137,10 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
 
   cancel(): void {
     this.location.back();
+  }
+
+  resetForm(): void {
+    if (this.employeeForm) { this.employeeForm.reset(); }
   }
 
   ngOnDestroy(): void {
