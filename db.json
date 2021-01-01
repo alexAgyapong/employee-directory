@@ -124,17 +124,6 @@
       "name": "Rina Bronze",
       "email": "rina@test.com",
       "phone": "07498766345",
-      "age": 32,
-      "gender": "Female",
-      "image": "",
-      "jobTitle": "Assistant",
-      "departmentId": 1,
-      "id": 19
-    },
-    {
-      "name": "Rina Bronze",
-      "email": "rina@test.com",
-      "phone": "07498766345",
       "age": 34,
       "gender": "Female",
       "image": {

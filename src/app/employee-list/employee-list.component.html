@@ -1,3 +1,22 @@
+<div class="container mt-5">
+  <form [formGroup]="searchForm">
+    <div class="row">
+      <div class="col-sm input-group mb-3">
+        <input type="search" class="form-control" aria-label="search" aria-describedby="search" placeholder="Search by name...">
+        <button class="input-group-text btn btn-primary" id="search" >
+          <ion-icon name="search-outline"></ion-icon>
+        </button>
+      </div>
+      <div class="col-sm">
+        <select class="form-select" formControlName="departmentId">
+          <option value="0" selected>Filter by Department</option>
+          <option *ngFor="let item of departments" [value]="item?.id">{{item?.name}}</option>
+        </select>
+      </div>
+    </div>
+  </form>
+  <hr>
+</div>
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 mx-md-5 p-3">
   <div *ngFor="let employee of employees$|async">
     <app-employee-card [employee]="employee"></app-employee-card>

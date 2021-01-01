@@ -3,7 +3,8 @@ import { EmployeeService } from '../shared/services/employee.service';
 import { Observable, Subscription } from 'rxjs';
 import { Employee } from '../shared/models/employee';
 import { Department } from '../shared/models/department';
-import { tap } from 'rxjs/operators';
+import { debounceTime, tap } from 'rxjs/operators';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -15,11 +16,23 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   employees$: Observable<Employee[]>;
   departments: Department[];
   subscription: Subscription;
+  searchForm: FormGroup;
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getEmployees();
+    this.searchForm = this.fb.group({ searchTerm: [''], departmentId: ['0'] });
+    this.searchForm
+      .get('searchTerm')
+      .valueChanges.pipe(debounceTime(500))
+      .subscribe((input: string) => {
+        // if (input) {
+        //   this.searchEmployees(input);
+        // } else {
+        //   this.filterByDepartment();
+        // }
+      })
   }
 
   getEmployees(): void {
