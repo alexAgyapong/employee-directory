@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { EmployeeService } from '../shared/services/employee.service';
-import { Observable, Subscription } from 'rxjs';
+import { from, Observable, of, Subscription } from 'rxjs';
 import { Employee } from '../shared/models/employee';
 import { Department } from '../shared/models/department';
 import { debounceTime, tap } from 'rxjs/operators';
@@ -17,6 +17,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   departments: Department[];
   subscription: Subscription;
   searchForm: FormGroup;
+  employees: Employee[];
 
   constructor(private employeeService: EmployeeService, private fb: FormBuilder) { }
 
@@ -38,13 +39,12 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   getEmployees(): void {
     this.employees$ = this.employeeService.getEmployees()
       .pipe(tap((employees) => {
+        this.employees = employees;
         this.getEmployeeDepartments(employees);
       }));
   }
 
   searchEmployees(searchTerm?: string): void {
-    console.log('here.....');
-
     searchTerm = this.searchForm.get('searchTerm')?.value;
     if (searchTerm) {
       this.employees$ = this.employeeService.searchEmployees(searchTerm).pipe(tap(data => {
@@ -57,6 +57,15 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.employees$ = this.employeeService.filterEmployeesByDepartment(departmentId).pipe(tap(data => {
       this.getEmployeeDepartments(data);
     }));
+
+    // TODO: Filter existing employee list
+    // const response = this.employees.filter(x => x.departmentId === +departmentId);
+    // console.log({departmentId});
+    // console.log({response});
+
+    // this.employees$ = of(response).pipe(tap(data => {
+    //   this.getEmployeeDepartments(data);
+    // }));
   }
 
   private getEmployeeDepartments(employees: Employee[]): void {
