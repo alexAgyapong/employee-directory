@@ -74,8 +74,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
 
   private setEmployeeDepartment(employees: Employee[], departments: Department[]): void {
-    employees.forEach(employee => {
-      departments.forEach(department => {
+    employees?.forEach(employee => {
+      departments?.forEach(department => {
         if (employee.departmentId === department.id) {
           employee.department = department.name;
         }
