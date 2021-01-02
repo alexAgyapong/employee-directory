@@ -1,14 +1,16 @@
 <div class="container mt-5">
   <form [formGroup]="searchForm">
-    <div class="row">
-      <div class="col-sm input-group mb-3">
-        <input type="search" class="form-control" id="search" aria-label="search" aria-describedby="search"
-          placeholder="Search by name..." formControlName="searchTerm">
-        <button type="button" class="input-group-text btn btn-primary" (click)="searchEmployees()">
-          <ion-icon name="search-outline"></ion-icon>
-        </button>
+    <div class="row justify-content-between">
+      <div class="col-sm-4  mb-3">
+        <div class="input-group">
+          <input type="search" class="form-control" id="search" aria-label="search" aria-describedby="search"
+            placeholder="Search by name..." formControlName="searchTerm">
+          <button type="button" class="input-group-text btn btn-primary" (click)="searchEmployees()">
+            <ion-icon name="search-outline"></ion-icon>
+          </button>
+        </div>
       </div>
-      <div class="col-sm">
+      <div class="col-sm-3">
         <select class="form-select" formControlName="departmentId">
           <option value="0" selected>Filter by Department</option>
           <option *ngFor="let item of departments" [value]="item?.id">{{item?.name}}</option>

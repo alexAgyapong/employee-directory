@@ -56,15 +56,6 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.employees$ = this.employeeService.filterEmployeesByDepartment(departmentId).pipe(tap(data => {
       this.getEmployeeDepartments(data);
     }));
-
-    // TODO: Filter existing employee list
-    // const response = this.employees.filter(x => x.departmentId === +departmentId);
-    // console.log({departmentId});
-    // console.log({response});
-
-    // this.employees$ = of(response).pipe(tap(data => {
-    //   this.getEmployeeDepartments(data);
-    // }));
   }
 
   private getEmployeeDepartments(employees: Employee[]): void {
@@ -73,7 +64,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     if (!this.departments) {
       this.setEmployeeDepartment(employees, this.departments);
     } else {
-     this.employeeService.getDepartments().subscribe(res => {
+      this.employeeService.getDepartments().subscribe(res => {
         this.departments = res;
         this.setEmployeeDepartment(employees, res);
         console.log({ res }, 'depts res');
