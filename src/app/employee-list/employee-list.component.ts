@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { EmployeeService } from '../shared/services/employee.service';
-import { from, Observable, of, Subscription } from 'rxjs';
+import { from, Observable, of, Subject, Subscription } from 'rxjs';
 import { Employee } from '../shared/models/employee';
 import { Department } from '../shared/models/department';
-import { debounceTime, tap } from 'rxjs/operators';
+import { debounceTime, takeUntil, tap } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 
@@ -15,9 +15,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class EmployeeListComponent implements OnInit, OnDestroy {
   employees$: Observable<Employee[]>;
   departments: Department[];
-  subscription: Subscription;
   searchForm: FormGroup;
   employees: Employee[];
+  destroy$ = new Subject();
 
   constructor(private employeeService: EmployeeService, private fb: FormBuilder) { }
 
@@ -27,12 +27,12 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
 
     this.searchForm
       .get('searchTerm')
-      .valueChanges.pipe(debounceTime(500))
+      .valueChanges.pipe(debounceTime(500), takeUntil(this.destroy$))
       .subscribe((input: string) => input?.length ? this.searchEmployees(input) : this.getEmployees());
 
     this.searchForm
       .get('departmentId')
-      .valueChanges
+      .valueChanges.pipe(takeUntil(this.destroy$))
       .subscribe((input: number) => input > 0 ? this.filterEmployees(input) : this.getEmployees());
   }
 
@@ -45,7 +45,6 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
 
   searchEmployees(searchTerm?: string): void {
-    searchTerm = this.searchForm.get('searchTerm')?.value;
     if (searchTerm) {
       this.employees$ = this.employeeService.searchEmployees(searchTerm).pipe(tap(data => {
         this.getEmployeeDepartments(data);
@@ -74,7 +73,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     if (!this.departments) {
       this.setEmployeeDepartment(employees, this.departments);
     } else {
-      this.subscription = this.employeeService.getDepartments().subscribe(res => {
+     this.employeeService.getDepartments().subscribe(res => {
         this.departments = res;
         this.setEmployeeDepartment(employees, res);
         console.log({ res }, 'depts res');
@@ -94,6 +93,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
