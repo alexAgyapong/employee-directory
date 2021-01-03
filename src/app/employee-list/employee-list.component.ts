@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { EmployeeService } from '../shared/services/employee.service';
 import { from, Observable, of, Subject, Subscription } from 'rxjs';
 import { Employee } from '../shared/models/employee';
 import { Department } from '../shared/models/department';
 import { debounceTime, takeUntil, tap } from 'rxjs/operators';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -19,21 +19,43 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   employees: Employee[];
   destroy$ = new Subject();
 
+  get searchTermControl(): FormControl {
+    return this.searchForm
+      .get('searchTerm') as FormControl;
+  }
+
+  get departmentIdControl(): FormControl {
+    return this.searchForm
+      .get('departmentId') as FormControl;
+  }
   constructor(private employeeService: EmployeeService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getEmployees();
     this.searchForm = this.fb.group({ searchTerm: [''], departmentId: ['0'] });
 
-    this.searchForm
-      .get('searchTerm')
+    this.searchTermControl
       .valueChanges.pipe(debounceTime(500), takeUntil(this.destroy$))
-      .subscribe((input: string) => input?.length ? this.searchEmployees(input) : this.getEmployees());
+      .subscribe((input: string) => {
+        // input?.length ? this.searchEmployees(input) : this.getEmployees()
+        if (input?.length) {
+          this.searchEmployees(input)
+        } else if (this.departmentIdControl?.value > 0) {
+          this.filterEmployees(this.departmentIdControl.value);
+        } else { this.getEmployees() }
+      }
+      );
 
-    this.searchForm
-      .get('departmentId')
+    this.departmentIdControl
       .valueChanges.pipe(takeUntil(this.destroy$))
-      .subscribe((input: number) => input > 0 ? this.filterEmployees(input) : this.getEmployees());
+      .subscribe((input: number) => {
+        // input > 0 ? this.filterEmployees(input) : this.getEmployees()
+        if (input > 0) {
+          this.filterEmployees(input);
+        } else if (this.searchTermControl.value) {
+          this.searchEmployees(this.searchTermControl.value);
+        } else { this.getEmployees() }
+      });
   }
 
   getEmployees(): void {
