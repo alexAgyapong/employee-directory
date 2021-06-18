@@ -21,11 +21,19 @@
       <ng-container *ngIf="employee$|async"></ng-container>
       <form [formGroup]="employeeForm" (ngSubmit)="saveEmployee()" autocomplete="off">
         <div class="row mb-3">
-          <label for="name" class="col-sm-2 col-form-label">Name</label>
+          <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="name" formControlName="name"
-              [ngClass]="{'is-invalid': nameControl?.touched && nameControl?.errors?.required}">
-            <div class="invalid-feedback">Name is required</div>
+            <input type="text" class="form-control" id="firstName" formControlName="firstName"
+              [ngClass]="{'is-invalid': firstNameControl?.touched && firstNameControl?.errors?.required}">
+            <div class="invalid-feedback">First Name is required</div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="lastName" class="col-sm-2 col-form-label">Last lastName</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="lastName" formControlName="lastName"
+              [ngClass]="{'is-invalid': lastNameControl?.touched && lastNameControl?.errors?.required}">
+            <div class="invalid-feedback">Last Name is required</div>
           </div>
         </div>
         <div class="row mb-3">

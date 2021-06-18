@@ -26,8 +26,11 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
     return this.employeeForm.get('email') as FormControl;
   }
 
-  get nameControl(): FormControl {
-    return this.employeeForm.get('name') as FormControl;
+  get firstNameControl(): FormControl {
+    return this.employeeForm.get('firstName') as FormControl;
+  }
+  get lastNameControl(): FormControl {
+    return this.employeeForm.get('lastName') as FormControl;
   }
 
   get jobTitleControl(): FormControl {
@@ -39,10 +42,10 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
   }
 
   constructor(private fb: FormBuilder,
-              private employeeService: EmployeeService,
-              private location: Location,
-              private router: Router,
-              private route: ActivatedRoute) { }
+    private employeeService: EmployeeService,
+    private location: Location,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
 
   ngOnInit(): void {
@@ -68,7 +71,8 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
 
   private setupForm(): void {
     this.employeeForm = this.fb.group({
-      name: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       email: ['', [Validators.email]],
       phone: [''],
       age: [''],
